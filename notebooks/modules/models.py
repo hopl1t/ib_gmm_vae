@@ -1,5 +1,5 @@
 import torch
-import utils as utils
+import modules.utils as utils # need to change to utils if running not from notebook
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.parameter import Parameter
