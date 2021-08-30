@@ -1,19 +1,10 @@
 import numpy as np
 import torch
 import math
-import os
 import pickle
-import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
-from torch.autograd import Variable
 from torch.optim import lr_scheduler
-from torch.utils.data import DataLoader
-from torchvision import transforms
-from pathlib import Path
-import torch.nn.init as init
-from torch.nn.parameter import Parameter
-from torchvision.datasets import FashionMNIST
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.preprocessing import StandardScaler

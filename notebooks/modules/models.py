@@ -1,20 +1,9 @@
-import numpy as np
 import torch
-import math
-import os
-import pickle
-import modules.utils as utils
+import utils as utils
 import torch.nn as nn
-import torch.optim as optim
 import torch.nn.functional as F
-from torch.autograd import Variable
-from torch.optim import lr_scheduler
-from torch.utils.data import DataLoader
-from torchvision import transforms
-from pathlib import Path
-import torch.nn.init as init
 from torch.nn.parameter import Parameter
-from torchvision.datasets import FashionMNIST
+
 
 class MNIST_2STOCHASTIC(nn.Module):
 	"""
@@ -130,7 +119,7 @@ class MixtureModle(nn.Module):
 		weights = torch.softmax(self.weights, dim=1) # force weights to sum to 1
 		# not using diagonal matrix as grad cannot be computed
 		# TODO: consider reducing the redundent first dimension (also form reparam function)
-		weights = torch.stack(torch.tensor_split(self.weights,self.num_weights,dim=1), dim=1).repeat(1,1,input.shape[-1])
+		weights = torch.stack(torch.tensor_split(weights,self.num_weights,dim=1), dim=1).repeat(1,1,input.shape[-1])
 		weighted = input * weights
 		weighted = weighted.sum(dim=2)
 		return weighted, weights
